@@ -1,0 +1,46 @@
+#!/bin/bash
+#####################################################################
+# LNMP is a bash script for the installation of Nginx + PHP + MySQL.#
+# Author        Hehl <1181554113@qq.com>                            #
+# Blog          Http://www.yunweijilu.com                           #
+#####################################################################
+
+# file name: nginx.service 
+# This is a shell script to control nginx process
+# such as { start | stop | reload | restart } nginx 
+
+export PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:~/bin
+
+#Config echo color
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[0;33m'
+WHITE='\033[0;0m'
+nginx="/usr/local/nginx/sbin/nginx"
+prog=$(basename $nginx)
+NGINX_CONF_FILE="/usr/local/nginx/conf/nginx.conf"
+lockfile=/var/lock/subsys/nginx
+
+
+#Check root privileges
+[ $(id -u) != 0 ] && { echo -e "$RED You need root privileges to run it!" ; exit 1;}
+
+#Source network and functions
+. /etc/rc.d/init.d/functions
+
+case $1 in
+start)
+	nginx
+;;
+stop)
+	nginx -s stop
+;;
+reload)
+	nginx -s reload
+;;
+*)
+	echo
+	echo -e "$RED Usage: $0 { start | stop | reload }"
+	echo
+;;
+esac
