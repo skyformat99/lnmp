@@ -26,8 +26,8 @@ wget -c $*
 #Mysql Insltall Way
 mysql_install_way(){
 echo
-echo  -e "${YELLOW}How to install Mysql Server?( Default 1 ) :
-		$RED 1)$WHITE Use Binary File;(Option)
+echo  -e "${YELLOW}How to install Mysql Server? :
+		$RED 1)$WHITE Use Binary File;(Default)
 		$RED 2)$WHITE Use Build Source Code;(Need more time)"
 echo
 read -p "You select the number to install mysql:  " mysql_install_wayway

@@ -64,9 +64,9 @@ if [ "$install_mysql_yn" == "y" -o "$install_mysql_yn" == "Y" ];then
 		$RED 2)$WHITE mysql-5.7.16 $GREEN( RAM size must large than 2 GB! );"
 		echo -e "$WHITE"
 		read -p "Please input the number of your choose:" mysql_version_select
-		if [ "$mysql_version_select" == 1 -o "$mysql_version_select" == 2 ];then
+		if [ -z "$mysql_version_select" -o "$mysql_version_select" == 1 -o "$mysql_version_select" == 2 ];then
 			mysql_install_way
-			[ -z "$mysql_version_select" ] && mysql_version_select=1 && echo -e "You choose install $mysql_version"
+			[ -z "$mysql_version_select" ] && mysql_version_select=1
 			echo
 			read -p "mysql server root password (default:root): " mysql_root_pass
 			mysql_root_pass=${mysql_root_pass:=root}
@@ -78,7 +78,7 @@ if [ "$install_mysql_yn" == "y" -o "$install_mysql_yn" == "Y" ];then
 	fi
 fi
 
-while :;do echo
+while :;do echo -e "$YELLOW"
 	read -p "Do you want Install PHP?(y/n)" install_php_yn
 	if [[ ! $install_php_yn =~ ^[y,Y,n,N]$ ]];then
 		echo -e "\033[0mPlease input y or n\033[33m"
