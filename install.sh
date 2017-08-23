@@ -22,5 +22,5 @@ source /etc/profile
 lnmp 2>&1 | tee  ./lnmp.log
 echo -e "$WHITE"
 
-. /etc/bashrc
+. /etc/profile
 

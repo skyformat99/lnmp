@@ -12,38 +12,10 @@ echo -e "$WHITE"
 [ "$os" == "centos" ] && yum  install -y iptables-services mlocate net-tools bzip2 autoconf make cmake  gcc gcc-c++ zlib zlib-devel screen psmisc
 [ "$os" == "ubuntu" ] && apt-get update -y  && apt-get install -y -f build-essential mlocate net-tools bzip2 autoconf make cmake  gcc screen psmisc
 
-#Install zlib for ubuntu
-install_zlib(){
-pushd $src_dir
-tar xf ${zlib}.tar.xz && cd $zlib
-./configure
-make && make install
-popd
-}
 install_zlib
 
-#install jemalloc for nginx and mysql
-install_jemalloc(){
-pushd $src_dir
-tar xjf ${jemalloc}.tar.bz2 && cd $jemalloc
-./configure --prefix=/usr/local/jemalloc --libdir=/usr/local/lib
-make && make install
-make clean
-popd
-echo "/usr/local/lib" > /etc/ld.so.conf.d/usr_local_lib.conf
-/sbin/ldconfig
-}
 install_jemalloc
 
-#install openssl module
-install_openssl(){
-pushd $src_dir
-tar zxf ${openssl}.tar.gz
-cd ${openssl}
-./configure
-make && make install
-popd
-}
 install_openssl
 
 #install pcre

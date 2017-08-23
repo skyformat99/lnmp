@@ -109,7 +109,7 @@ while :;do echo
 		break
 	fi
 done
-echo
+echo -e "$WHITE"
 
 #Sync time
 sync_time
@@ -173,7 +173,7 @@ cat >> ~/.bashrc  << EOF
 PS1="\[\e[37;40m\][\[\e[32;40m\]\u\[\e[37;40m\]@\h \[\e[35;40m\]\W\[\e[0m\]]\\$ "
 EOF
 else
-cat >> /etc/bashrc  << EOF 
+cat >> /etc/profile  << EOF 
 PS1="\[\e[37;40m\][\[\e[32;40m\]\u\[\e[37;40m\]@\h \[\e[35;40m\]\W\[\e[0m\]]\\$ "
 EOF
 fi

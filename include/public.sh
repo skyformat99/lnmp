@@ -18,6 +18,37 @@ y|Y)
 esac
 }
 
+#install openssl module
+install_openssl(){
+pushd $src_dir
+tar zxf ${openssl}.tar.gz
+cd ${openssl}
+./configure
+make && make install
+popd
+}
+
+#Install zlib for ubuntu
+install_zlib(){
+pushd $src_dir
+tar xf ${zlib}.tar.xz && cd $zlib
+./configure
+make && make install
+popd
+}
+
+#install jemalloc for nginx and mysql
+install_jemalloc(){
+pushd $src_dir
+tar xjf ${jemalloc}.tar.bz2 && cd $jemalloc
+./configure --prefix=/usr/local/jemalloc --libdir=/usr/local/lib
+make && make install
+make clean
+popd
+echo "/usr/local/lib" > /etc/ld.so.conf.d/usr_local_lib.conf
+/sbin/ldconfig
+}
+
 #Download
 down_url(){
 wget -c $*
@@ -181,7 +212,7 @@ apt-get install  libxml2  libxml2-dev -y
 apt-get install  openssl libssl-dev -y
 apt-get install  curl libcurl4-gnutls-dev -y
 apt-get install libjpeg-dev libpng12-dev   libxpm-dev libfreetype6-dev  libmcrypt-dev  libmysql++-dev  libxslt1-dev  libicu-dev  -y 
-ln -sf /usr/lib/x86_64-linux-gnu/libssl.so  /usr/lib
+ln -sf /usr/lib/${sys_bit}-linux-gnu/libssl.so  /usr/lib
 fi
 }
 
@@ -194,8 +225,24 @@ make && make install
 popd
 }
 
+#check php install status
+chk_php_status(){
+if [ -e $php_install_dir/bin/phpize ];then
+	echo -e "Php install successful!"
+else
+	echo -e "${RED}Php install failed, Please contact author.${WHITE}"
+	exit || kill -9 $$
+fi
+}
+
 #Configure for php
 config_php(){
+#fix curl missing for debian
+if [ `grep -i debian /etc/issue | wc -l` -eq 1 ];then
+	ln -s /usr/include/x86_64-linux-gnu/curl /usr/local/include/curl
+	apt-get install -y libjpeg-dev libpng-dev  libfreetype6-dev make gcc
+fi
+
 ./configure --prefix=$php_install_dir --with-config-file-path=$php_install_dir/etc \
 --with-config-file-scan-dir=$php_install_dir/etc/php.d \
 --with-fpm-user=php --with-fpm-group=www --enable-fpm --enable-opcache --disable-fileinfo \
@@ -206,9 +253,13 @@ config_php(){
 --enable-mbstring --with-mcrypt --with-gd --enable-gd-native-ttf --with-openssl \
 --with-mhash --enable-pcntl --enable-sockets --with-xmlrpc --enable-ftp --enable-intl --with-xsl \
 --with-gettext --enable-zip --enable-soap --disable-debug
-make ZEND_EXTRA_LIBS='-liconv'
+#make ZEND_EXTRA_LIBS='-liconv'
+make
 ln -s /usr/local/lib/libiconv.so.2 /usr/lib64/
-make install && cp -f php.ini-production $php_etc/php.ini && cp -f sapi/fpm/init.d.php-fpm /etc/init.d/php-fpm && chmod +x /etc/init.d/php-fpm
+ln -s /usr/local/lib/libiconv.so.2 /usr/lib/
+make install
+chk_php_status
+cp -f php.ini-production $php_etc/php.ini && cp -f sapi/fpm/init.d.php-fpm /etc/init.d/php-fpm && chmod +x /etc/init.d/php-fpm
 }
 
 #Add php boot
@@ -217,13 +268,6 @@ if [[ $os == "centos" ]];then
 	chkconfig  php-fpm on  && chkconfig save
 elif	[[ $os == "ubuntu" ]];then
 	update-rc.d php-fpm defaults
-fi
-
-if [ -e $php_install_dir/bin/phpize ];then
-	echo -e "Php install successful!"
-else
-	echo -e "Php install failed, Please contact author."
-	kill -9 $$
 fi
 ln -s /usr/local/php/bin/php /usr/bin/php
 }
