@@ -15,14 +15,8 @@
 ## 安装
 ![安装](http://116.196.71.137/src/menu.gif)
 
-## 完成
-![完成](http://116.196.71.137/src/chk.jpg)
-
 ## 添加
 ![添加](http://116.196.71.137/src/host_add.gif)
-
-## 备份
-![备份](http://116.196.71.137/src/db_backup.gif)
 
 ## 卸载
 ![卸载](http://116.196.71.137/src/uninstall.gif)
