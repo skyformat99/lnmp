@@ -241,6 +241,8 @@ config_php(){
 if [ `grep -i debian /etc/issue | wc -l` -eq 1 ];then
 	ln -s /usr/include/x86_64-linux-gnu/curl /usr/local/include/curl
 	apt-get install -y libjpeg-dev libpng-dev  libfreetype6-dev make gcc
+elif [ $os == "ubuntu" ];then
+	ln -fs /usr/include/${sysbit}-linux-gnu/curl /usr/include/
 fi
 
 ./configure --prefix=$php_install_dir --with-config-file-path=$php_install_dir/etc \
@@ -249,7 +251,7 @@ fi
 --with-mysql=mysqlnd --with-mysqli=mysqlnd --with-pdo-mysql=mysqlnd \
 --with-iconv-dir=/usr/local --with-freetype-dir --with-jpeg-dir --with-png-dir --with-zlib \
 --with-libxml-dir=/usr --enable-xml --disable-rpath --enable-bcmath --enable-shmop --enable-exif \
---enable-sysvsem --enable-inline-optimization --with-curl=/usr/local --enable-mbregex \
+--enable-sysvsem --enable-inline-optimization --with-curl --enable-mbregex \
 --enable-mbstring --with-mcrypt --with-gd --enable-gd-native-ttf --with-openssl \
 --with-mhash --enable-pcntl --enable-sockets --with-xmlrpc --enable-ftp --enable-intl --with-xsl \
 --with-gettext --enable-zip --enable-soap --disable-debug

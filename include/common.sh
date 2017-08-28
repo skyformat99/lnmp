@@ -23,7 +23,7 @@ src_dir=`pwd`/src
 
 #Sysbit variable
 sysbit=`uname -a | grep 64 | wc -l`
-[ $sysbit -eq "1" ] && sys_bit="x86_64" || sys_bit="i686"
+[ $sysbit -eq "1" ] && sys_bit="x86_64" || sys_bit="i386"
 
 #define nginx path
 ngx_dir="/usr/local/nginx"
