@@ -10,13 +10,4 @@
 > * 添加虚拟站点和目录
 
 ## 文件
-![文件](http://116.196.71.137/src/cd.gif)
-
-## 安装
-![安装](http://116.196.71.137/src/menu.gif)
-
-## 添加
-![添加](http://116.196.71.137/src/host_add.gif)
-
-## 卸载
-![卸载](http://116.196.71.137/src/uninstall.gif)
+![文件查看](http://down.yunweijilu.com/cd.gif)
