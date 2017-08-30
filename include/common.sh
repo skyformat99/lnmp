@@ -25,6 +25,9 @@ src_dir=`pwd`/src
 sysbit=`uname -a | grep 64 | wc -l`
 [ $sysbit -eq "1" ] && sys_bit="x86_64" || sys_bit="i386"
 
+#Def db_bit
+[ $sys_bit == "i386" ] && db_bit="i686" || db_bit="x86_64"
+
 #define nginx path
 ngx_dir="/usr/local/nginx"
 ngx_version="nginx-1.12.0"

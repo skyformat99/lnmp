@@ -6,9 +6,6 @@
 # Desribtion:		Public Function				    #
 #####################################################################
 
-#Def db_bit
-[ $sys_bit == "i386" ] && db_bit="i686" || db_bit="x86_64"
-
 #Sync time
 sync_time(){
 case $sync_time_yn in
