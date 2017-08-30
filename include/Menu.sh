@@ -111,6 +111,16 @@ while :;do echo
 done
 echo -e "$WHITE"
 
+while :;do echo
+	read -p "Do you want Install Pureftpd(Y/n)" install_ftp_yn
+	if [[ ! $install_ftp_yn =~ ^[Y,y,N,n]$ ]];then
+		echo -e "\033[0mPlease input y or n\033[33m"
+	else
+		break
+	fi
+done
+
+
 #Sync time
 sync_time
 
@@ -158,12 +168,17 @@ else
 fi
 #install redis
 if [ "$install_redis_yn" == "y" -o "$install_redis_yn" == "Y" ];then
-	echo "You select instll Redis."
+	echo "You select install Redis."
 	. ./include/redis.sh
 else
 	echo "Not install or input wrong value for Redis!" 
 fi
 
+#install pureftpd
+if [ "$install_ftp_yn" == "y" -o "$install_ftp_yn" == "Y" ];then
+	echo "You select install Pureftpd"
+	. ./include/pureftp.sh
+fi
 }
 Menu
 

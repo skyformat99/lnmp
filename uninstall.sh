@@ -25,6 +25,8 @@ echo
 
 read -p "Please Choose Uninstall Redis or Not! ( y/n )[n]" uninstall_redis
 
+read -p "Please Choose Uninstall Pureftpd or Not! ( y/n )[n]" uninstall_ftp
+
 echo -e "$RED"
 case $uninstall_ngx in
 y|Y)
@@ -46,7 +48,7 @@ n|N)
 	echo
 	echo  "You select don't  uninstall Nginx!"
 ;;
-*) 
+*)
 	echo
 	echo  "Input error to uninstall nginx! "
 ;;
@@ -161,6 +163,31 @@ echo -e "$WHITE"
 }
 uninstall_redis
 
+uninstall_pureftp(){
+echo
+case $uninstall_ftp in
+y|Y)
+	if [ ! -d $ftp_dir ];then
+		echo "No Pureftp installed in your system!"
+	else
+		service pureftpd stop
+		if [ $os == "ubuntu" ];then
+			apt-get remove pureftpd -f >/dev/null 2>&1
+			update-rc.d -f pureftpd remove >/dev/null 2>&1
+		fi
+		ps aux | grep pureftp | grep -v grep | awk '{ print $2 }' | xargs kill -9 >/dev/null 2>&1
+		rm -rf $ftp_dir /etc/init.d/pureftpd
+		echo
+		echo "Uninstall Pureftpd successful!"
+	fi
+n|N)
+	echo "You select do not install Pureftpd!"
+;;
+*)
+	echo  "Input error to uninstall Pureftpd! "
+;;
+esac
+}
 
 #del define PS1
 sed 's/"PS1="\[\"//g' /etc/bashrc >/dev/null 2>&1
