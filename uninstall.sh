@@ -24,6 +24,7 @@ read -p "Please Choose Uninstall Php or Not! ( y/n )[n]" uninstall_php
 echo
 
 read -p "Please Choose Uninstall Redis or Not! ( y/n )[n]" uninstall_redis
+echo
 
 read -p "Please Choose Uninstall Pureftpd or Not! ( y/n )[n]" uninstall_ftp
 
@@ -46,7 +47,7 @@ y|Y)
 ;;
 n|N)
 	echo
-	echo  "You select don't  uninstall Nginx!"
+	echo  "You select not uninstall Nginx!"
 ;;
 *)
 	echo
@@ -90,7 +91,7 @@ y|Y)
 ;;
 n|N)
         echo
-        echo  "You select don't  uninstall Mysql!"
+        echo  "You select not uninstall Mysql!"
 ;;
 *)
         echo
@@ -122,7 +123,7 @@ y|Y)
 ;;
 n|N)
         echo
-        echo "You select don't  uninstall Php!"
+        echo "You select not uninstall Php!"
 ;;
 *)
         echo
@@ -153,13 +154,12 @@ y|Y)
 	fi
 ;;
 n|N)
-	echo "You select do not install Redis!"
+	echo "You select not uninstall Redis!"
 ;;
 *)
 	echo  "Input error to uninstall Redis! "
 ;;
 esac
-echo -e "$WHITE"
 }
 uninstall_redis
 
@@ -180,14 +180,18 @@ y|Y)
 		echo
 		echo "Uninstall Pureftpd successful!"
 	fi
+;;
 n|N)
-	echo "You select do not install Pureftpd!"
+	echo "You select not uninstall Pureftpd!"
 ;;
 *)
 	echo  "Input error to uninstall Pureftpd! "
 ;;
 esac
 }
+uninstall_pureftp
+
+echo -e "$WHITE"
 
 #del define PS1
 sed 's/"PS1="\[\"//g' /etc/bashrc >/dev/null 2>&1

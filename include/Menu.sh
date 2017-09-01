@@ -109,7 +109,6 @@ while :;do echo
 		break
 	fi
 done
-echo -e "$WHITE"
 
 while :;do echo
 	read -p "Do you want Install Pureftpd(Y/n)" install_ftp_yn
@@ -119,7 +118,33 @@ while :;do echo
 		break
 	fi
 done
+if [[ "$install_ftp_yn" =~ ^[y,Y]$ ]];then
+		echo -e "\033[32m"
+		[ -f $ftp_sbin ] && echo -e "\033[32mYou already installed pureftpd in you system!!\033[0m" && exit 0
+		while :;do
+			read -p "Please input ftp user acount:" ftp_user
+			if [ -z "$ftp_user" ];then
+				echo
+			else
+				break
+			fi
+		done
+		echo
+		while :;do
+			read -p "Please input ftp user $ftp_user password:" ftp_pwd
+			if [ -z $ftp_pwd ];then
+				echo
+			else
+				break
+			fi
+		done
+		echo
+		read -p "Please input your ftpuser $ftp_user home dirctory: (Default /data/wwwroot)" ftp_user_home
+		[ -z $ftp_user_home ] && ftp_user_home="/data/wwwroot"
+		echo -e "\033[32m#########################################\033[0m"
+fi
 
+echo -e "$WHITE"
 
 #Sync time
 sync_time

@@ -87,12 +87,11 @@ MYSQLDUMP="/usr/local/mysql/bin/mysqldump"
 mysql_admin="/usr/local/mysql/bin/mysqladmin"
 
 #Def pureftp varible
-ftp_url="https://download.pureftpd.org/pub/pure-ftpd/releases"
+#ftp_url="https://download.pureftpd.org/pub/pure-ftpd/releases"
 ftp_ver="pure-ftpd-1.0.46"
 ftp_bz="${ftp_ver}.tar.bz2"
 ftp_dir="/usr/local/pureftpd"
-ftp_conf="${ftp_dir}/etc/pure-ftpd.conf"
-ftp_pw="${ftp_dir}/bin/pure-pw"
-ftp_sbin="${ftp_dir}/sbin/pure-ftpd"
-ftp_user_home="/data/wwwroot"
+ftp_conf="/usr/local/pureftpd/etc/pure-ftpd.conf"
+ftp_pw="/usr/local/pureftpd/bin/pure-pw"
+ftp_sbin="/usr/local/pureftpd/sbin/pure-ftpd"
 

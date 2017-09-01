@@ -15,7 +15,7 @@
 # Default-Stop: 0 1 6
 # description: Pure-FTPd is an FTP server daemon based upon Troll-FTPd
 # processname: pure-ftpd
-# pidfile: /usr/local/pureftpd/var/run/pure-ftpd.pid
+# pidfile: /var/run/pure-ftpd.pid
 # config: /usr/local/pureftpd/etc/pure-ftpd.conf
 
 # Source function library.
@@ -37,7 +37,7 @@ start() {
 }
 stop() {
   echo -n $"Stopping $prog: "
-  kill $(cat /usr/local/pureftpd/var/run/pure-ftpd.pid)
+  kill $(cat /var/run/pure-ftpd.pid)
   RETVAL=$?
   [ $RETVAL = 0 ] && rm -f /var/lock/subsys/$prog
   echo
