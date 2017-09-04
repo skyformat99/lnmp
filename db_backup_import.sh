@@ -15,9 +15,6 @@ mysql_sql_back(){
 if [[ ! -d ${data_backup_dir} ]] ; then
 	mkdir -p $data_backup_dir
         echo -e " \033[32mCreat $data_backup_dir Successful! \033[0m"
-else
-	echo -e " \033[32m$data_backup_dir is already exists, backup stoped!\033[0m"
-	exit
 fi
 
 if [ `ps aux | grep mysql|grep -v grep|wc -l` -eq "0" ];then
@@ -38,6 +35,7 @@ $mysql_cmd -u"$MYSQLUSR" -p"$mysql_root_pass" < $mysql_data_backup
 }
 
 #Mysql backup or import Menu
+[ ! -d $mysql_local ] && echo -e "${RED}No Mysql Server in your System!!" && exit 1
 if [ -z $1 ];then
 	echo -e "${WHITE}Usage {$0 backup|import}${WHITE}"
 	echo
