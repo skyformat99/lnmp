@@ -19,7 +19,6 @@ if [ $os == "centos" ];then
 		echo "Input error for install Mysql way!"
 		exit
 	fi
-	mysql_install_boot
 elif [ $os == "ubuntu" ];then
 apt-cache search libaio && apt-get install -y libaio1 libaio-dev
 	if [ "$mysql_chk_u" ==  "0" ];then
@@ -33,7 +32,7 @@ apt-cache search libaio && apt-get install -y libaio1 libaio-dev
 	[ -d /usr/share/mysql ] && mkdir /usr/share/mysql && cp $mysql_local/share/errmsg.sys /usr/share/mysql
 	[ -f /etc/mysql/my.cnf ] && mv /etc/mysql/my.cnf /etc/mysql/my.cnf_$RANDOM
 	popd
-	mysql_install_boot
 fi
+mysql_install_boot
 }
 install_mysql_5.6

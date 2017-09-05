@@ -58,3 +58,6 @@ else
 	fi
 fi
 echo -e "${WHITE}"
+
+
+echo "################"

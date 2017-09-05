@@ -109,7 +109,7 @@ popd
 mysql_grant(){
 $mysql_admin -uroot password "${mysql_root_pass}"
 cp -f include/grant.sql include/grant.sql.bak
-sed -i 's/mysql_pwd/'"${mysql_root_pass}"'/g' include/grant.sql
+sed -i 's@mysql_pwd@'"${mysql_root_pass}"'@g' include/grant.sql
 cat include/grant.sql | $mysql_cmd -uroot -p${mysql_root_pass}
 mv -f include/grant.sql.bak include/grant.sql
 $mysql_cmd -uroot -p${mysql_root_pass} <<EOF
