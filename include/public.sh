@@ -112,13 +112,6 @@ cp -f include/grant.sql include/grant.sql.bak
 sed -i 's@mysql_pwd@'"${mysql_root_pass}"'@g' include/grant.sql
 cat include/grant.sql | $mysql_cmd -uroot -p${mysql_root_pass}
 mv -f include/grant.sql.bak include/grant.sql
-$mysql_cmd -uroot -p${mysql_root_pass} <<EOF
-drop database if exists test;
-delete from mysql.user where not (user='root');
-delete from mysql.db where user='';
-flush privileges;
-exit
-EOF
 [ -f $mysql_data_backup ] && $mysql_cmd -u$MYSQLUSR -p$mysql_root_pass < $mysql_data_backup
 }
 
