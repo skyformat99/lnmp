@@ -63,3 +63,21 @@ vhost.sh                               #一键增加Nginx虚拟站点和网站�
 [6]: http://lnmp.yunweijilu.com/blog/img/2017/0904/db1.png
 [7]: http://lnmp.yunweijilu.com/blog/img/2017/0904/db2.png
 [8]: http://lnmp.yunweijilu.com/blog/img/2017/0904/uninstall.png
+
+
+### 更新记录
+201709
+增加MySQL数据库密码一键重置脚本
+
+201708
+增加ftp软件pureftp的安装部署
+
+201707
+增加支持ubuntu16
+增加redis部署和管理
+
+201706
+增加支持ubuntu14
+
+201705
+开始写这个脚本
