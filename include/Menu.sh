@@ -145,6 +145,8 @@ if [[ "$install_ftp_yn" =~ ^[y,Y]$ ]];then
 fi
 
 echo -e "$WHITE"
+echo "OS is $os"
+echo
 
 #Sync time
 sync_time

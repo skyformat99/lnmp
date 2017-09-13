@@ -28,16 +28,13 @@ chk_os(){
 if [ -f /etc/redhat-release ];then
 	os_cat=`cut -d'.' -f1,2 /etc/redhat-release`
 	echo "OS : $os_cat"
-else
+	[ `grep -i cent /etc/redhat-release | wc -l` -eq "1" ]  && os=centos
+elif [ -f /etc/issue ];then
 	os_cat=`cut -d'.' -f1,2 /etc/issue | tr -d '\n'`
-	[ -f /etc/issue ]
 	echo "OS : $os_cat"
-fi
-if [ -f /etc/issue -o -f /etc/redhat-release ];then
 	[ `grep -i ubuntu /etc/issue | wc -l` -eq "1" -o `grep -i debian /etc/issue | wc -l` -eq "1" ] && os=ubuntu
-	[ `grep -i cent /etc/issue | wc -l` -eq "1" ]  && os=centos
 else
-	echo "Unsupport System!!!"
+	echo "Unknow OS"
 	exit
 fi
 sysbit=`uname -a | grep 64 | wc -l`
@@ -71,4 +68,3 @@ chk_date
 echo "--------------------------------------------------------------------"
 }
 sysinfo
-
