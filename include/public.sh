@@ -274,11 +274,3 @@ cp -f conf/php-fpm.conf $php_etc
 service php-fpm restart
 rm -rf $src_dir/$libmcrypt $src_dir/${php_version[1]}
 }
-
-#Add phpinfo
-add_phpinfo(){
-[ ! -d ${wwwroot_dir}/default ] && mkdir -p ${wwwroot_dir}/default && chown -R www.www ${wwwroot_dir}/default
-echo "<?php phpinfo();?>" > ${wwwroot_dir}/default/index.php
-echo "It works!" >${wwwroot_dir}/default/index.html
-}
-

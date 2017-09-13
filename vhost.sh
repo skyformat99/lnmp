@@ -16,6 +16,7 @@ vhost_add(){
         chown -R $ngx_user:$ngx_group ${wwwroot_dir}/${domain_name}
         cp -f conf/nginx_vhost.conf  ${ngx_dir}/conf/vhost/${domain_name}.conf
         sed -i "s/domain/${domain_name}/g" ${ngx_dir}/conf/vhost/${domain_name}.conf
+	nginx -s reload
         echo -e "$GREEN"
         [ -d ${wwwroot_dir}/${domain_name} ] && echo -e "Created ${wwwroot_dir}/${domain_name} success!"
         [ -f ${ngx_dir}/conf/vhost/${domain_name}.conf ] && echo -e "Created ${ngx_dir}/conf/vhost/${domain_name}.conf success!"
@@ -32,6 +33,7 @@ vhost_del(){
 		[ ! -d  ${data_backup_dir} ] && mkdir -p ${data_backup_dir}
 		mv ${wwwroot_dir}/${domain_name} ${data_backup_dir}/${domain_name}_`date +%m%d%H%M`
 		mv ${ngx_dir}/conf/vhost/${domain_name}.conf ${data_backup_dir}/${domain_name}.conf_`date +%m%d%H%M`
+		nginx -s reload
 		echo -e "$GREEN"
 		[ ! -d ${wwwroot_dir}/${domain_name} ] && echo -e "Delete ${wwwroot_dir}/${domain_name} success!"
 		[ ! -f ${ngx_dir}/conf/vhost/${domain_name}.conf ] && echo -e "Delete ${ngx_dir}/conf/vhost/${domain_name}.conf success!"

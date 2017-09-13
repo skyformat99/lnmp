@@ -25,6 +25,5 @@ config_php
 add_php_boot
 popd
 copy_php_fpm
-add_phpinfo
 }
 install_php

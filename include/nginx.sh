@@ -62,7 +62,7 @@ rm -rf $src_dir/$ngx_version $src_dir/$openssl $src_dir/$pcre $src_dir/$jemalloc
 echo -e "$WHITE"
 [ "$os" == "centos" ] && { cp -f init.d/nginx-init-centos /etc/init.d/nginx ; chkconfig  --level 2345 nginx on && chkconfig save ; }
 [ "$os" == "ubuntu" ] && { cp -f init.d/nginx-init-ubuntu /etc/init.d/nginx && chmod a+x /etc/init.d/nginx ; update-rc.d nginx defaults; }
-echo "############################################If you see this word, Nginx works!!!################################" > $wwwroot_dir/default/index.html
+echo "############################################Nginx works!!!################################" > $wwwroot_dir/default/index.html
 
 #Don't use selinux
 close_selinux(){
@@ -85,6 +85,7 @@ fi
 centos_iptables
 
 service nginx restart
+nginx -s reload
 [ $os == "ubuntu" ] && service ufw stop
 }
 ngx_settings
