@@ -248,7 +248,7 @@ fi
 --enable-mbstring --with-mcrypt --with-gd --enable-gd-native-ttf --with-openssl \
 --with-mhash --enable-pcntl --enable-sockets --with-xmlrpc --enable-ftp --enable-intl --with-xsl \
 --with-gettext --enable-zip --enable-soap --disable-debug
-#make ZEND_EXTRA_LIBS='-liconv'
+make ZEND_EXTRA_LIBS='-liconv'
 make
 ln -s /usr/local/lib/libiconv.so.2 /usr/lib64/
 ln -s /usr/local/lib/libiconv.so.2 /usr/lib/
