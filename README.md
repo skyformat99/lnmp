@@ -1,7 +1,7 @@
 # 欢迎使用 LNMP一键部署脚本
 ---
 **一.简介**
-LNMP一键部署脚本是一键部署web环境所用，非常适合网站运维人员，开发人员在Linux系统中部署web环境。
+LNMP一键部署脚本是一键部署web环境所用，非常适合网站运维人员，web开发人员在Linux系统中部署web环境.我的博客 http://www.yunweijilu.com
 
 您可以使用LNMP一键部署脚本：
 > * 自动部署Nginx,Mysql,Php
@@ -55,14 +55,14 @@ vhost.sh                               #一键增加Nginx虚拟站点和网站�
 
 ![uninstall][8]
 
-[1]: http://lnmp.yunweijilu.com/blog/img/2017/0904/file.png
-[2]: http://lnmp.yunweijilu.com/blog/img/2017/0904/menu1.png
-[3]: http://lnmp.yunweijilu.com/blog/img/2017/0904/menu2.png
-[4]: http://lnmp.yunweijilu.com/blog/img/2017/0904/finished.png
-[5]: http://lnmp.yunweijilu.com/blog/img/2017/0904/vhost.png
-[6]: http://lnmp.yunweijilu.com/blog/img/2017/0904/db1.png
-[7]: http://lnmp.yunweijilu.com/blog/img/2017/0904/db2.png
-[8]: http://lnmp.yunweijilu.com/blog/img/2017/0904/uninstall.png
+[1]: http://imgs.yunweijilu.com/img/file.png
+[2]: http://imgs.yunweijilu.com/img/menu1.png
+[3]: http://imgs.yunweijilu.com/img/menu2.png
+[4]: http://imgs.yunweijilu.com/img/finished.png
+[5]: http://imgs.yunweijilu.com/img/vhost.png
+[6]: http://imgs.yunweijilu.com/img/db1.png
+[7]: http://imgs.yunweijilu.com/img/db2.png
+[8]: http://imgs.yunweijilu.com/img/uninstall.png
 
 
 ### 更新记录
