@@ -220,7 +220,7 @@ popd
 
 #check php install status
 chk_php_status(){
-if [ -e $php_install_dir/bin/phpize ];then
+if [ -e ${php_install_dir_use}/bin/phpize ];then
 	echo -e "Php install successful!"
 else
 	echo -e "${RED}Php install failed, Please contact author.${WHITE}"
@@ -238,8 +238,8 @@ elif [ $os == "ubuntu" ];then
 	ln -fs /usr/include/${sysbit}-linux-gnu/curl /usr/include/
 fi
 
-./configure --prefix=$php_install_dir --with-config-file-path=$php_install_dir/etc \
---with-config-file-scan-dir=$php_install_dir/etc/php.d \
+./configure --prefix=${php_install_dir_use} --with-config-file-path=${php_install_dir_use}/etc \
+--with-config-file-scan-dir=${php_install_dir_use}/etc/php.d \
 --with-fpm-user=php --with-fpm-group=www --enable-fpm --enable-opcache --disable-fileinfo \
 --with-mysql=mysqlnd --with-mysqli=mysqlnd --with-pdo-mysql=mysqlnd \
 --with-iconv-dir=/usr/local --with-freetype-dir --with-jpeg-dir --with-png-dir --with-zlib \
@@ -254,7 +254,7 @@ ln -s /usr/local/lib/libiconv.so.2 /usr/lib64/
 ln -s /usr/local/lib/libiconv.so.2 /usr/lib/
 make install
 chk_php_status
-cp -f php.ini-production $php_etc/php.ini && cp -f sapi/fpm/init.d.php-fpm /etc/init.d/php-fpm && chmod +x /etc/init.d/php-fpm
+cp -f php.ini-production ${php_install_dir_use}/etc/php.ini && cp -f sapi/fpm/init.d.php-fpm /etc/init.d/php-fpm && chmod +x /etc/init.d/php-fpm
 }
 
 #Add php boot
@@ -264,12 +264,12 @@ if [[ $os == "centos" ]];then
 elif	[[ $os == "ubuntu" ]];then
 	update-rc.d php-fpm defaults
 fi
-ln -s /usr/local/php/bin/php /usr/bin/php
+ln -fs ${php_install_dir_use}/bin/php /usr/bin/php
 }
 
 #Copy php-fpm.conf
 copy_php_fpm(){
-cp -f conf/php-fpm.conf $php_etc
+cp -f conf/php-fpm.conf ${php_install_dir_use}/etc
 [ ! -d ${wwwroot_dir} ] && mkdir -p ${wwwroot_dir}/default
 service php-fpm restart
 rm -rf $src_dir/$libmcrypt $src_dir/${php_version[1]}

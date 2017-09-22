@@ -67,7 +67,6 @@ php_bz[2]="${php_version[2]}.tar.bz2"
 php_url[1]="http://mirrors.sohu.com/php/${php_bz[1]}"
 php_url[2]="http://mirrors.sohu.com/php/${php_bz[2]}"
 php_install_dir="/usr/local/php"
-php_etc="/usr/local/php/etc"
 php_user=`grep www /etc/passwd | wc -l`
 
 #Redis 

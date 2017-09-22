@@ -13,10 +13,12 @@ install_php(){
 echo "/usr/local/lib" >> /etc/ld.so.conf && ldconfig
 pushd $src_dir
 if [ -z $php_version_select -o $php_version_select -eq 1 ];then
+	php_install_dir_use="${php_install_dir}/${php_version[1]}"
 	[ ! -f ${php_bz[1]} ] && down_url ${php_url[1]} || echo -e "Download ${php_url[1]} Failed!!"
 	tar xjvf ${php_bz[1]}
 	cd ${php_version[1]}
 else
+	php_install_dir_use="${php_install_dir}/${php_version[2]}"
 	[ ! -f ${php_bz[2]} ] && down_url ${php_url[2]} || echo -e "Download ${php_url[2]} Failed!!"
 	tar xjvf ${php_bz[2]}
 	cd ${php_version[2]}
