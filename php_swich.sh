@@ -39,9 +39,10 @@ case $select_swich_php in
 	else
 		echo -e "${GREEN}${php_version[1]} is exits,now swich to it!${WHITE}"
 		service php-fpm stop
-		sleep 2
+		sleep 3
+		killall php-fpm >/dev/null 2>&1
 		sed -i 's#^prefix=*.*[0-9]$#prefix=\/usr\/local\/php\/php-5\.6\.30#g' /etc/init.d/php-fpm
-		systemctl daemon-reload
+		systemctl daemon-reload >/dev/null 2>&1 
 		service php-fpm start
 		ln -fs ${php_install_dir}/${php_version[1]}/bin/php /usr/bin/php
 	fi
@@ -63,9 +64,10 @@ case $select_swich_php in
 	else
 		echo -e "${GREEN}${php_version[2]} is exits in system, now swich to it!${WHITE}"
 		service php-fpm stop
-		sleep 2
+		sleep 3
+		killall php-fpm >/dev/null 2>&1
 		sed -i 's#^prefix=*.*[0-9]$#prefix=\/usr\/local\/php\/php-7\.1\.6#g' /etc/init.d/php-fpm
-		systemctl daemon-reload
+		systemctl daemon-reload >/dev/null 2>&1
 		service php-fpm start
 		ln -fs ${php_install_dir}/${php_version[2]}/bin/php /usr/bin/php
 	fi

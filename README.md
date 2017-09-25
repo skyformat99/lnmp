@@ -21,6 +21,8 @@ install.sh                             #LNMP一键部署脚本
 uninstall.sh                           #一键卸载脚本
 upgrade.sh                             #一键升级脚本
 vhost.sh                               #一键增加Nginx虚拟站点和网站目录
+php_swich.sh                           #一键切换Php版本
+reset_mysql_pwd.sh                     #一键重置Mysql账号root的密码
 
 ```
 **三.安装截图**
@@ -66,8 +68,10 @@ vhost.sh                               #一键增加Nginx虚拟站点和网站�
 
 
 ### 更新记录
+
 201709
-增加MySQL数据库密码一键重置脚本
+增加MySQL数据库密码一键重置脚本;
+增加php版本一键切换,支持最新版本7.1.9,自动安装指定版本,如已经安装,再次来回切换无需重新安装
 
 201708
 增加ftp软件pureftp的安装部署

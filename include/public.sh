@@ -232,7 +232,7 @@ fi
 config_php(){
 #fix curl missing for debian
 if [ `grep -i debian /etc/issue | wc -l` -eq 1 ];then
-	ln -s /usr/include/x86_64-linux-gnu/curl /usr/local/include/curl
+	ln -fs /usr/include/x86_64-linux-gnu/curl /usr/local/include/curl
 	apt-get install -y libjpeg-dev libpng-dev  libfreetype6-dev make gcc
 elif [ $os == "ubuntu" ];then
 	ln -fs /usr/include/${sysbit}-linux-gnu/curl /usr/include/
@@ -250,8 +250,8 @@ fi
 --with-gettext --enable-zip --enable-soap --disable-debug
 make ZEND_EXTRA_LIBS='-liconv'
 make
-ln -s /usr/local/lib/libiconv.so.2 /usr/lib64/
-ln -s /usr/local/lib/libiconv.so.2 /usr/lib/
+ln -fs /usr/local/lib/libiconv.so.2 /usr/lib64/
+ln -fs /usr/local/lib/libiconv.so.2 /usr/lib/
 make install
 chk_php_status
 cp -f php.ini-production ${php_install_dir_use}/etc/php.ini && cp -f sapi/fpm/init.d.php-fpm /etc/init.d/php-fpm && chmod +x /etc/init.d/php-fpm

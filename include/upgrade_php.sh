@@ -21,7 +21,7 @@ if [ -d ${php_install_dir}/php-${php_version_input}/etc ];then
 	if [ -f /etc/init.d/php-fpm ];then
 		service php-fpm stop
 		sed -i 's#^prefix=*.*[0-9]$#prefix=\/usr\/local\/php\/php-'"${php_version_input}"'#g' /etc/init.d/php-fpm
-		systemctl daemon-reload
+		systemctl daemon-reload >/dev/null 2>&1
 		service php-fpm start
 	fi
 	exit
