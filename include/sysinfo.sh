@@ -30,7 +30,7 @@ if [ -f /etc/redhat-release ];then
 	echo "OS : $os_cat"
 	[ `grep -i cent /etc/redhat-release | wc -l` -eq "1" ]  && os=centos
 elif [ -f /etc/issue ];then
-	os_cat=`cut -d'.' -f1,2 /etc/issue | tr -d '\n'`
+	os_cat=`cut -d ' ' -f 1-3 /etc/issue | tr -d '\\n'`
 	echo "OS : $os_cat"
 	[ `grep -i ubuntu /etc/issue | wc -l` -eq "1" -o `grep -i debian /etc/issue | wc -l` -eq "1" ] && os=ubuntu
 else
